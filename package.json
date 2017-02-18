@@ -1,6 +1,7 @@
 {
   "name": "for-hue",
   "version": "0.0.1",
+  "repository": "rivyx/for-hue",
   "private": false,
   "devDependencies": {
     "autoprefixer": "6.3.7",
@@ -59,10 +60,15 @@
     "babel-polyfill": "^6.20.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "fs-temp": "^1.1.2",
     "jimp": "^0.2.27",
     "morgan": "^1.7.0",
     "pdf-image": "^1.1.0",
-    "socket.io": "^1.7.2"
+    "pdf2json": "^1.1.7",
+    "react-dropzone": "^3.10.0",
+    "socket.io": "^1.7.2",
+    "tmp": "0.0.31"
   },
   "scripts": {
     "start": "node ./src/start.js",
@@ -71,5 +77,6 @@
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
-  }
+  },
+  "license": "MIT"
 }

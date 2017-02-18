@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Row } from 'react-flexbox-grid';
 import logo from './logo.svg';
 import './App.css';
-import TodoList from './components/TodoList';
+import FileDrop from './components/FileDrop';
 import {Link} from 'react-router';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
         </div>
         <Grid>
           <Row className="main">
-            <TodoList />
+            <FileDrop />
           </Row>
         </Grid>
       </div>
