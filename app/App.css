@@ -1,0 +1,35 @@
+#root, .App {
+  background: #f8f8f8;
+  min-height: 100% !important;
+  font-family: "Source Sans Pro";
+}
+
+.main {
+  padding: 20px;
+}
+
+.App-logo {
+  width: 50px;
+  margin-left: 48.25%;
+  margin-top: -10px;
+}
+
+.App-logo:hover {
+  cursor: pointer;
+}
+
+.App-header {
+  background-color: #80a1b6;
+  height: 20px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
