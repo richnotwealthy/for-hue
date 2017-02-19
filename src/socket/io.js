@@ -2,7 +2,7 @@ var io = require('socket.io');
 var tmp = require('tmp');
 var gm = require('gm').subClass({imageMagick: true});
 var fs = require('fs');
-var PDFParser = require('pdf2json');
+var pdfPageCount = require('pdf_page_count');
 var Jimp = require('jimp');
 var Q = require('q');
 var daltonize = require('./daltonize');
@@ -13,13 +13,10 @@ module.exports = function(server) {
     socket.on('pdf-upload', function(pdfBuffer, cbType) {
       console.log('got a pdf')
 
-      var pdfParser = new PDFParser();
+      pdfPageCount.count(pdfBuffer, function(resp) {
+        if (!resp.success) throw resp.error;
 
-      pdfParser.on('pdfParser_dataError', function(errData) { console.error(errData.parserError); } );
-
-      // get pdf information as json
-      pdfParser.on('pdfParser_dataReady', function(pdfJSON) {
-        var numOfPages = pdfJSON.formImage.Pages.length;
+        var numOfPages = resp.data;
         console.log('pages:', numOfPages);
 
         // create temporary file in root/tmp
@@ -39,7 +36,7 @@ module.exports = function(server) {
               .write(imagePath, function(err) {
                 if (err) throw err;
 
-                if (numOfPages === 1) {
+                if (+numOfPages === 1) {
                   Jimp.read(imagePath, function(err, image) {
                     daltonize(image.bitmap.data, cbType, function(correctedImageBuffer) {
                       image.bitmap.data = correctedImageBuffer;
@@ -70,7 +67,7 @@ module.exports = function(server) {
                   var promiseArray = [];
                   for (var i = 0; i < numOfPages; i++) {
                     var currentImagePath = path+'-'+i+'.png';
-                    promiseArray[i] = (function(curPath) {
+                    promiseArray[i] = (function(curPath, curIndex) {
                       var deferred = Q.defer();
                       Jimp.read(curPath, function(err, image) {
                         daltonize(image.bitmap.data, 'Protanope', function(correctedImageBuffer) {
@@ -83,7 +80,7 @@ module.exports = function(server) {
                         });
                       });
                       return deferred.promise;
-                    })(currentImagePath);
+                    })(currentImagePath, i);
                   }
 
                   Q.all(promiseArray).then(function() {
@@ -110,8 +107,6 @@ module.exports = function(server) {
           });
         });
       });
-
-      pdfParser.parseBuffer(pdfBuffer);
     })
   });
 
