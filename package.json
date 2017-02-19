@@ -75,8 +75,7 @@
   },
   "scripts": {
     "start": "node ./src/start.js",
-    "build": "node ./src/build.js",
-    "setup": "node ./src/utils/setup-db.js"
+    "build": "node ./src/build.js"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
