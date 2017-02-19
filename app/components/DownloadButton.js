@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import LinearProgress from 'material-ui/LinearProgress';
 
 class DownloadButton extends Component {
 
@@ -18,11 +19,14 @@ class DownloadButton extends Component {
 
   render() {
     return (
-      <RaisedButton
-        onClick={this.triggerDownload(this.props.daltonizedFile, this.props.fileName)}
-        label="Download"
-        disabled={this.props.daltonizedFile === null}
-      />
+      <div>
+        {this.props.showLoader && (<LinearProgress mode="indeterminate" />)}
+        <RaisedButton
+          onClick={this.triggerDownload(this.props.daltonizedFile, this.props.fileName)}
+          label="Download"
+          disabled={this.props.daltonizedFile === null || this.props.showLoader}
+        />
+      </div>
     );
   }
 

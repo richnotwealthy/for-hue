@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row } from 'react-flexbox-grid';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import logo from './logo.svg';
 import './App.css';
 import FileDrop from './components/FileDrop';
@@ -18,7 +18,8 @@ class App extends Component {
     this.state = {
       cbType: 'Protanope',
       newPdf: null,
-      fileName: ''
+      fileName: '',
+      showLoader: false
     }
 
     this._pdfDaltonized = this._pdfDaltonized.bind(this);
@@ -33,7 +34,8 @@ class App extends Component {
   _pdfDaltonized(newPdf) {
     this.setState({
       ...this.state,
-      newPdf
+      newPdf,
+      showLoader: false
     })
   }
 
@@ -41,7 +43,8 @@ class App extends Component {
     console.log(file);
     this.setState({
       ...this.state,
-      fileName: file[0].name
+      fileName: file[0].name,
+      showLoader: true
     })
     emit.uploadPDF(file[0], this.state.cbType);
   }
@@ -60,15 +63,23 @@ class App extends Component {
           <div className="App-header">
             <Link to="/"><img src={logo} className="App-logo" alt="logo" /></Link>
           </div>
-          <Grid>
+          <Grid className="main">
             <Row>
-              <FileDrop handleFileUpload={this.handleFileUpload} />
-            </Row>
-            <Row>
-              <TypePicker changeCbType={this.changeCbType} cbType={this.state.cbType} />
-            </Row>
-            <Row>
-              <DownloadButton daltonizedFile={this.state.newPdf} fileName={this.state.fileName} />
+              <Col md={6}>
+                <FileDrop handleFileUpload={this.handleFileUpload} />
+              </Col>
+              <Col md={6}>
+                <Row>
+                  <TypePicker changeCbType={this.changeCbType} cbType={this.state.cbType} />
+                </Row>
+                <Row>
+                  <DownloadButton
+                    daltonizedFile={this.state.newPdf}
+                    fileName={this.state.fileName}
+                    showLoader={this.state.showLoader}
+                  />
+                </Row>
+              </Col>
             </Row>
           </Grid>
         </div>
