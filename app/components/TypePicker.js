@@ -14,23 +14,29 @@ class TypePicker extends Component {
 
   render() {
     return (
-      <RadioButtonGroup name="cbType" valueSelected={this.props.cbType} onChange={this.props.changeCbType}>
-        <RadioButton
-          value="Protanope"
-          label="Protanope"
-          style={styles.radioButton}
-        />
-        <RadioButton
-          value="Deuteranope"
-          label="Deuteranope"
-          style={styles.radioButton}
-        />
-        <RadioButton
-          value="Tritanope"
-          label="Tritanope"
-          style={styles.radioButton}
-        />
-      </RadioButtonGroup>
+      <div>
+        <h3>Colorblind Type</h3>
+        <RadioButtonGroup name="cbType" valueSelected={this.props.cbType} onChange={this.props.changeCbType}>
+          <RadioButton
+            value="Protanope"
+            label="Protanope"
+            disabled={this.props.disabled}
+            style={styles.radioButton}
+          />
+          <RadioButton
+            value="Deuteranope"
+            label="Deuteranope"
+            disabled={this.props.disabled}
+            style={styles.radioButton}
+          />
+          <RadioButton
+            value="Tritanope"
+            label="Tritanope"
+            disabled={this.props.disabled}
+            style={styles.radioButton}
+          />
+        </RadioButtonGroup>
+      </div>
     );
   }
 

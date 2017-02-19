@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import logo from './logo.svg';
-import './App.css';
+import logo from './images/logo-full.png';
 import FileDrop from './components/FileDrop';
 import TypePicker from './components/TypePicker';
 import DownloadButton from './components/DownloadButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import * as emit from './socket/emitters';
 import * as listen from './socket/listeners';
-import {Link} from 'react-router';
+import './App.css';
 
 class App extends Component {
 
@@ -52,7 +51,8 @@ class App extends Component {
   changeCbType(e, value) {
     this.setState({
       ...this.state,
-      cbType: value
+      cbType: value,
+      newPdf: null
     })
   }
 
@@ -60,9 +60,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-          <div className="App-header">
-            <Link to="/"><img src={logo} className="App-logo" alt="logo" /></Link>
-          </div>
+          <img src={logo} className="App-logo" alt="logo" />
           <Grid className="main">
             <Row>
               <Col md={6}>
@@ -70,7 +68,11 @@ class App extends Component {
               </Col>
               <Col md={6}>
                 <Row>
-                  <TypePicker changeCbType={this.changeCbType} cbType={this.state.cbType} />
+                  <TypePicker
+                    changeCbType={this.changeCbType}
+                    cbType={this.state.cbType}
+                    disabled={this.state.showLoader}
+                  />
                 </Row>
                 <Row>
                   <DownloadButton

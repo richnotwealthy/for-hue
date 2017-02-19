@@ -8,6 +8,7 @@ class FileDrop extends Component {
     return (
       <Col md={12}>
         <Dropzone
+          className="filedrop"
           onDrop={this.props.handleFileUpload}
           style={{
             width: '95%',
@@ -17,11 +18,14 @@ class FileDrop extends Component {
             borderStyle: 'dashed',
             borderRadius: '7px',
             padding: '10px',
-            color: '#999',
-            cursor: 'pointer'
+            color: '#707070',
+            cursor: 'pointer',
+            fontSize: '50px'
           }}
         >
-          <div>Drop a PDF here, or click to select one.</div>
+          <div>
+            Drop a PDF here, or click to select one, to begin daltonization.
+          </div>
         </Dropzone>
       </Col>
     );

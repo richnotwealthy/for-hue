@@ -1,5 +1,4 @@
 #root, .App {
-  background: #f8f8f8;
   min-height: 100% !important;
   font-family: "Source Sans Pro";
 }
@@ -9,13 +8,9 @@
 }
 
 .App-logo {
-  width: 50px;
-  margin-left: 48.25%;
-  margin-top: -10px;
-}
-
-.App-logo:hover {
-  cursor: pointer;
+  margin-left: 20%;
+  margin-top: 50px;
+  height: 220px;
 }
 
 .App-header {
@@ -27,4 +22,17 @@
 
 .App-intro {
   font-size: large;
+}
+
+.filedrop:hover {
+  background-color: rgba(210, 210, 210, 0.2);
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+.filedrop {
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
 }

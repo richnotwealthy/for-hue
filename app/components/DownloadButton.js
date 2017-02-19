@@ -25,6 +25,8 @@ class DownloadButton extends Component {
           onClick={this.triggerDownload(this.props.daltonizedFile, this.props.fileName)}
           label="Download"
           disabled={this.props.daltonizedFile === null || this.props.showLoader}
+          primary={true}
+          labelStyle={{ fontSize: '18px' }}
         />
       </div>
     );
