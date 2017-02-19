@@ -17,7 +17,8 @@ class FileDrop extends Component {
             borderStyle: 'dashed',
             borderRadius: '7px',
             padding: '10px',
-            color: '#999'
+            color: '#999',
+            cursor: 'pointer'
           }}
         >
           <div>Drop a PDF here, or click to select one.</div>
