@@ -4,6 +4,8 @@
 
 Users select their type of colorblindness (one of the major three), upload a pdf file, and are given a daltonized (color adjusted) pdf file to download.
 
+See the [demo](https://for-hue.herokuapp.com/) on heroku.
+
 ## Development Environment
 
 After cloning this package, run the following:
